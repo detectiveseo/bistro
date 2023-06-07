@@ -1,7 +1,10 @@
 import React from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import {Autoplay, Navigation, Pagination } from "swiper";
+
 
 import image1 from '../../../assets/home/01.jpg'
 import image2 from '../../../assets/home/02.jpg'
@@ -11,36 +14,40 @@ import image5 from '../../../assets/home/05.png'
 import image6 from '../../../assets/home/06.png'
 
 const Banner = () => {
-    var settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    };
     return (
-        <div className=''>
-            <Slider {...settings}>
-            <div>
+        <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+            }}
+            pagination={{
+                clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className="mySwiper"
+        >
+            <SwiperSlide>
                 <img src={image1} alt="" />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
                 <img src={image2} alt="" />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
                 <img src={image3} alt="" />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
                 <img src={image4} alt="" />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
                 <img src={image5} alt="" />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
                 <img src={image6} alt="" />
-            </div>
-        </Slider>
-        </div>
+            </SwiperSlide>
+        </Swiper>
     );
 };
 
