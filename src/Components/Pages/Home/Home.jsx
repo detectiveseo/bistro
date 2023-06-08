@@ -1,16 +1,16 @@
-import React from 'react';
-import Banner from './Banner';
-import CategorySlider from './CategorySlider';
-import SectionTitle from '../../Shared/SectionTitle';
+import CategorySlider from './Category/CategorySlider';
+import Banner from './Banner/Banner';
+import PopularMenu from './PopularMenu/PopularMenu';
+import Feature from './Features/Feature';
 
 const Home = () => {
+
     return (
-        <div className='w-8/12 mx-auto'>
+        <div>
             <Banner />
-            <div>
-                <SectionTitle heading="ORDER ONLINE" subtitle="From 11:00am to 10:00pm"/>
-                <CategorySlider />
-            </div>
+            <CategorySlider />
+            <PopularMenu />
+            <Feature />
         </div>
     );
 };
