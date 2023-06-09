@@ -27,7 +27,7 @@ const CategorySlider = () => {
                         delay: 2500,
                         disableOnInteraction: false,
                     }}
-                    loop={true}
+                    loop={true} 
                     freeModd={true}
                     pagination={{
                         clickable: true,

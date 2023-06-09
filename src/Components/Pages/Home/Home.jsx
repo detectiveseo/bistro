@@ -10,13 +10,15 @@ const Home = () => {
     return (
         <div>
             <Helmet>
-                <title>My Title</title>
+                <title>Bistro Boss</title>
             </Helmet>
             <Banner />
             <CategorySlider />
             <PopularMenu />
             <Feature />
-            <Reviews />
+            <div className="py-10">
+                <Reviews />
+            </div>
         </div>
     );
 };

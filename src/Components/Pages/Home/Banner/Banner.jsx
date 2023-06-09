@@ -15,7 +15,7 @@ import image6 from '../../../../assets/home/06.png'
 
 const Banner = () => {
     return (
-        <div className='h-fit overflow-hidden'>
+        <div className=' lg:h-40 lg:lg:h-fit overflow-hidden'>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -31,22 +31,22 @@ const Banner = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img className='w-full h-[600px] object-cover' src={image1} alt="" />
+                    <img className='w-full object-cover' src={image1} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[600px] object-cover' src={image2} alt="" />
+                    <img className='w-full object-cover' src={image2} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[600px] object-cover' src={image3} alt="" />
+                    <img className='w-full object-cover' src={image3} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[600px] object-cover' src={image4} alt="" />
+                    <img className='w-full object-cover' src={image4} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[600px] object-cover' src={image5} alt="" />
+                    <img className='w-full object-cover' src={image5} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className='w-full h-[600px] object-cover' src={image6} alt="" />
+                    <img className='w-full object-cover' src={image6} alt="" />
                 </SwiperSlide>
             </Swiper>
         </div>
