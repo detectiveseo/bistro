@@ -16,14 +16,16 @@ const PopularMenu = () => {
             });
     }, [])
 
-    
+
 
     return (
         <div>
             <SectionTitle heading="FROM OUR MENU" subtitle="Check it out" />
-            <MenuCard menu={menu}></MenuCard>
+            <div className='w-8/12 mx-auto'>
+                <MenuCard menu={menu}></MenuCard>
+            </div>
         </div>
-            
+
     );
 };
 

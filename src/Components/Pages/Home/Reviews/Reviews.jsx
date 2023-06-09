@@ -4,8 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation, Autoplay } from "swiper";
+import { Navigation, Autoplay } from "swiper";
 import quote from '../../../../assets/icon/quote-left 1.png'
+import { Rating } from '@smastrom/react-rating'
+
+import '@smastrom/react-rating/style.css'
 
 
 const Reviews = () => {
@@ -30,9 +33,10 @@ const Reviews = () => {
                 //     clickable: true,
                 // }}
                 autoplay={{
-                    delay: 2500,
+                    delay: 5000,
                     disableOnInteraction: false,
                 }}
+                
                 navigation={true}
                 modules={[Autoplay, Navigation]}
                 className="mySwiper"
@@ -41,6 +45,7 @@ const Reviews = () => {
                     return (
                         <SwiperSlide key={review._id}>
                             <div className='flex flex-col justify-center items-center w-4/12 mx-auto text-center gap-6'>
+                            <Rating style={{ maxWidth: 250 }} value={review.rating} />
                                 <div><img src={quote} alt="" /></div>
                                 <h4>{review.details}</h4>
                                 <h4 className='text-4xl font-bold'>{review.name}</h4>

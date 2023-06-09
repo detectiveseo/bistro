@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import CategorySlider from './Category/CategorySlider';
 import Banner from './Banner/Banner';
 import PopularMenu from './PopularMenu/PopularMenu';
@@ -8,6 +9,9 @@ const Home = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>My Title</title>
+            </Helmet>
             <Banner />
             <CategorySlider />
             <PopularMenu />
