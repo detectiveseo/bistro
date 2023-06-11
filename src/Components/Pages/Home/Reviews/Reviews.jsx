@@ -19,8 +19,6 @@ const Reviews = () => {
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
-
-    console.log(reviews);
     return (
         <div>
             <SectionTitle heading="What Our Clients Say" subtitle="TESTIMONIALS" />

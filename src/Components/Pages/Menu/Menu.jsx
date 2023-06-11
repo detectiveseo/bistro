@@ -1,40 +1,41 @@
-import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import SectionBanner from '../../Shared/SectionBenner/SectionBanner';
-import backgorundImg from '../../../assets/menu/banner3.jpg'
-import SectionTitle from '../../Shared/SectionTitle';
-import MenuCard from '../../Shared/MenuCard/MenuCard';
-import BottomOutletBtn from '../../Shared/Buttons/BottomOutletBtn';
+import TodaysOffer from './BannerSection/TodaysOffer';
+import CategoryItems from '../../Shared/CategoryItems/CategoryItems';
+import backgorundImg from '../../../assets/menu/dessert-bg.jpeg'
 
 const Menu = () => {
-    const [menu, setMenu] = useState([]);
-    useEffect(() => {
-        fetch("menu.json")
-            .then((res) => res.json())
-            .then((data) => {
-                const popularItems = data.filter(x => x.category == "popular");
-                setMenu(popularItems)
-            });
-    }, [])
-
     return (
         <div>
             <Helmet>
                 <title>Bistro boss | Menu</title>
             </Helmet>
 
+            <TodaysOffer />
 
-            <div>
-                <SectionBanner backgroundImage={backgorundImg} heading={"our menu"} subtitle={"Would you like to try a dish?"}></SectionBanner>
-                <div className='w-8/12 mx-auto'>
-                    <SectionTitle subtitle={"Don't miss"} heading={"TODAY'S OFFER"}></SectionTitle>
+            
+            <CategoryItems 
+            backgorundImg={backgorundImg} 
+            title={"DESSERTS"}
+            subTilte={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+            categoryName={"dessert"}/>
 
-                    <MenuCard menu={menu}></MenuCard>
+            <CategoryItems 
+            backgorundImg={backgorundImg} 
+            title={"PIZZA"}
+            subTilte={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+            categoryName={"pizza"}/>
 
-                    <BottomOutletBtn>See more</BottomOutletBtn>
-                </div>
-            </div>
+            <CategoryItems 
+            backgorundImg={backgorundImg} 
+            title={"SALADS"}
+            subTilte={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+            categoryName={"pizza"}/>
 
+            <CategoryItems 
+            backgorundImg={backgorundImg} 
+            title={"SOUPS"}
+            subTilte={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+            categoryName={"soup"}/>
         </div>
     );
 };
