@@ -1,8 +1,10 @@
-const BottomOutletBtn = ({children}) => {
+const BottomOutletBtn = ({ children }) => {
     return (
-        <button>
-            {children}
-        </button>
+        <div className="text-center">
+            <button className="btn btn-outline border-0 bg-slate-100 border-b-4 border-green-400">
+                {children}
+            </button>
+        </div>
     );
 };
 

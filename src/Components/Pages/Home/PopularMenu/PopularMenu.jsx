@@ -1,20 +1,11 @@
-import { useEffect, useState } from 'react';
 import SectionTitle from '../../../Shared/SectionTitle';
 import MenuCard from '../../../Shared/MenuCard/MenuCard';
-import useMenu from '../../../../Hooks/useMenu';
+import useMenu from '../../../../assets/Hooks/useMenu';
+
 
 const PopularMenu = () => {
-    const [menu, setMenu] = useState([]);
-
-    console.log(useMenu("popular"))
-    useEffect(() => {
-        fetch("menu.json")
-            .then((res) => res.json())
-            .then((data) => {
-                const popularItems = data.filter(x => x.category == "popular");
-                setMenu(popularItems)
-            });
-    }, [])
+    const menu = useMenu();
+    const popularItems = menu.filter(items => items.category === "popular")
 
 
 
@@ -22,7 +13,7 @@ const PopularMenu = () => {
         <div>
             <SectionTitle heading="FROM OUR MENU" subtitle="Check it out" />
             <div className='w-8/12 mx-auto'>
-                <MenuCard menu={menu}></MenuCard>
+                <MenuCard menu={popularItems}></MenuCard>
             </div>
         </div>
 
