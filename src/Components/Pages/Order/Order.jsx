@@ -1,8 +1,10 @@
 
+import useMenu from '../../../assets/Hooks/useMenu';
 import backgroundImage from '../../../assets/shop/banner2.jpg'
 import SectionBanner from '../../Shared/SectionBenner/SectionBanner';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import ItemsFilter from './ItemsFilter';
 
 
 const Order = () => {
@@ -14,7 +16,7 @@ const Order = () => {
                 subtitle={"Would you like to try a dish?"}
             />
 
-            <div>
+            <div className='w-8/12 mx-auto my-10'>
                 <Tabs>
                     <TabList>
                         <Tab>SALAD</Tab>
@@ -25,10 +27,23 @@ const Order = () => {
                     </TabList>
 
                     <TabPanel>
-                        <h2>Any content 1</h2>
+                        <ItemsFilter categoryName={"salad"}></ItemsFilter>
                     </TabPanel>
+
                     <TabPanel>
-                        <h2>Any content 2</h2>
+                        <ItemsFilter categoryName={"pizza"}></ItemsFilter>
+                    </TabPanel>
+
+                    <TabPanel>
+                        <ItemsFilter categoryName={"soup"}></ItemsFilter>
+                    </TabPanel>
+
+                    <TabPanel>
+                        <ItemsFilter categoryName={"dessert"}></ItemsFilter>
+                    </TabPanel>
+
+                    <TabPanel>
+                        <ItemsFilter categoryName={"drinks"}></ItemsFilter>
                     </TabPanel>
                 </Tabs>
             </div>
