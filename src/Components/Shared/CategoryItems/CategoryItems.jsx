@@ -13,7 +13,7 @@ const CategoryItems = ({backgorundImg, title, subTilte,  categoryName}) => {
             <div className='w-8/12 mx-auto my-10'>
                 <MenuCard menu={filterdMenu}></MenuCard>
 
-                <BottomOutletBtn>See more</BottomOutletBtn>
+                <BottomOutletBtn to={`/order/${categoryName}`}>See more</BottomOutletBtn>
             </div>
            </>
             );
