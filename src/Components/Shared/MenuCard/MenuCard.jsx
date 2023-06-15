@@ -3,7 +3,7 @@ const MenuCard = ({menu}) => {
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10'>
             {
-                menu.map(item => {
+                menu.slice(0,4).map(item => {
                     return (
                         <div key={item._id} className='flex flex-col lg:flex-row gap-5 lg:gap-10'>
                             <div className='overflow-hidden w-full lg:w-5/12'>

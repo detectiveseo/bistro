@@ -4,6 +4,7 @@ import Home from './Components/Pages/Home/Home';
 import Menu from './Components/Pages/Menu/Menu';
 import Shop from './Components/Pages/Shop/Shop';
 import Order from './Components/Pages/Order/Order';
+import CreateAndLogin from './Components/Pages/Account/CreateAndLogin';
 
 const Router = createBrowserRouter([{
     path: "/",
@@ -24,6 +25,10 @@ const Router = createBrowserRouter([{
                 {
                     path: "order/:category",
                     element: <Order></Order>
+                },
+                {
+                    path: "account",
+                    element: <CreateAndLogin></CreateAndLogin>
                 }
             ]
     )

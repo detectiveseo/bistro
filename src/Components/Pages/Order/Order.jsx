@@ -6,17 +6,20 @@ import 'react-tabs/style/react-tabs.css';
 import ItemsFilter from './ItemsFilter';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 
 const Order = () => {
      const { category } = useParams();
      const categorys = ["salad", "pizza", "soup", "dessert", "drinks"];
      const initialIndex = categorys.indexOf(category);
-     console.log(initialIndex)
      const [tabIndex, setTabIndex] = useState(initialIndex);
 
      return (
           <div>
+               <Helmet>
+                    <title>Food Order</title>
+               </Helmet>
                <SectionBanner
                     backgroundImage={backgroundImage}
                     heading={"OUR SHOP"}
