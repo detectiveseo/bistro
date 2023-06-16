@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import logo from '/logo.png'
+import { useContext } from 'react';
+import { AuthContext } from '../../Proveiders/AuthProviders';
 
 const Header = () => {
+    const {user, loading} = useContext(AuthContext);
+    console.log( "user", user)
     return (
         <div className="navbar bg-black bg-opacity-10 text-white h-24 lg:fixed z-50">
             <div className="navbar-start">
@@ -28,7 +32,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="account" className="text-2xl font-thin uppercase">Account</Link>
+                {!loading? <Link to="account" className="text-2xl font-thin uppercase">{user? user.displayName : "Login"}</Link> : "loading"}
             </div>
         </div>
     );

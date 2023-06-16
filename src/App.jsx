@@ -5,6 +5,7 @@ import Footer from './Components/Shared/Footer/Footer';
 
 const App = () => {
     const location = useLocation();
+    console.log(import.meta.env.VITE_APIKEY)
     const noHeaderFooter = location.pathname.includes("account");
     return (
         <>
