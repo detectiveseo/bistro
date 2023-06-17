@@ -32,7 +32,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {!loading? <Link to="account" className="text-2xl font-thin uppercase">{user? user.displayName : "Login"}</Link> : "loading"}
+                {!loading? <Link to={user? "dashboard" : "login"} className="text-2xl font-thin uppercase">{user? user.displayName : "Login"}</Link> : "loading"}
             </div>
         </div>
     );
