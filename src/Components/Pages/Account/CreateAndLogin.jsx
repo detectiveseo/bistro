@@ -3,30 +3,46 @@ import { FaGoogle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../Proveiders/AuthProviders';
+import { useForm } from "react-hook-form"
 
 
 
 const CreateAndLogin = () => {
     const [switchCreate, setSwithchCreate] = useState(false);
-    const [isDisabled, setIsDisabled] = useState(true)
-
-    const { setUser, singUpWithGmail, singUpUsingEmailAndPassFiled } = useContext(AuthContext);
+    const [isDisabled, setIsDisabled] = useState(true);
+    
+    const { setUser, singUpWithGmail, singUpUsingEmailAndPassFiled, updateProfile, auth} = useContext(AuthContext);
     const navigate = useNavigate();
+
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm()
 
 
     // singUp with google popUp 
     const singUpWithGmailHandle = () => {
         singUpWithGmail()
             .then(res => {
-                setUser(res.user),
+                setUser(res.user);
                     navigate("/")
             })
     }
 
     // singUp with email and password 
-    const handleSingUp = (event) => {
-        event.preventDefault()
-        console.log(event.target.name)
+    const handleSingUp = (data) => {
+        singUpUsingEmailAndPassFiled(data)
+        .then(res => {
+            updateProfile(auth.currentUser, {
+                displayName: data.name,
+                photoURL: data.imageURL
+            }).then(() => {
+                setUser(res.user);
+            })
+            navigate("/")
+        })
     }
 
     const capthavalue = useRef();
@@ -37,7 +53,6 @@ const CreateAndLogin = () => {
             setIsDisabled(false)
         }
         else {
-
             setIsDisabled(true)
         }
     }
@@ -111,47 +126,94 @@ const CreateAndLogin = () => {
                             <div>
                                 <div className="flex flex-col w-full border-opacity-50">
                                     <form
-                                        onSubmit={handleSingUp}
+                                        onSubmit={handleSubmit(handleSingUp)}
                                         className="form-control">
+
+
                                         <label className='label'>
                                             <span className='lable-text'>Name</span>
                                         </label>
-                                        <input type="text" placeholder='Your name' name='name' id='user_name' className='input input-bordered' />
+
+                                        <input 
+                                        type="text" 
+                                        placeholder='Your name'
+                                        {...register("name")}
+                                         name='name' 
+                                         id='user_name' 
+                                         className='input input-bordered' />
+
+
 
                                         <label className='label'>
                                             <span className='lable-text'>Number</span>
                                         </label>
-                                        <input type="tel" placeholder='Phone number' name='number' id='user_number' className='input input-bordered' />
+
+                                        <input 
+                                        type="tel" 
+                                        placeholder='Phone number' 
+                                        name='number'
+                                        {...register("number")}
+                                        id='user_number' 
+                                        className='input input-bordered' />
+                                        
 
                                         <label className='label'>
                                             <span className='lable-text'>Dath Of Birth</span>
                                         </label>
-                                        <input type="date" placeholder='Phone number' name='dath_of_birth' id='user_number' className='input input-bordered' />
+
+                                        <input 
+                                        type="date" 
+                                        placeholder='Phone number' 
+                                        name='dath_of_birth'
+                                        {...register("dath_of_birth")} 
+                                        id='user_number' 
+                                        className='input input-bordered' />
+
+
 
                                         <label className='label'>
                                             <span className='lable-text'>profile picture</span>
                                         </label>
-                                        <input type="file" placeholder='Phone number' name='dath_of_birth' id='user_number' className='input input-bordered' />
+
+                                        <input 
+                                        type="text" 
+                                        placeholder='Phone number' 
+                                        {...register("profile_Link")}
+                                        className='input input-bordered' />
+
 
                                         <label className='label'>
-                                            <span className='lable-text'>Dath Of Birth</span>
+                                            <span className='lable-text'>Gender</span>
                                         </label>
-                                        <select className='input input-bordered'>
+
+                                        <select 
+                                        {...register("gender")}
+                                        className='input input-bordered'>
                                             <option value="Male">Male</option>
                                             <option value="female">Female</option>
                                             <option value="custom">Custom</option>
                                         </select>
 
+
                                         <label className="label">
                                             <span className="label-text">Email</span>
                                         </label>
-                                        <input type="text" placeholder="email" className="input input-bordered" />
+                                        <input 
+                                        type="text" 
+                                        {...register("email")}
+                                        placeholder="email" 
+                                        className="input input-bordered" />
 
 
                                         <label className="label">
                                             <span className="label-text">Password</span>
                                         </label>
-                                        <input type="text" placeholder="password" className="input input-bordered" />
+
+                                        <input 
+                                        type="password" 
+                                        {...register("password")}
+                                        placeholder="password" 
+                                        className="input input-bordered" />
                                         <label className="label">
                                             <span onClick={() => setSwithchCreate(!switchCreate)} className="label-text-alt link link-hover">Do you have already an account ?</span>
                                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
