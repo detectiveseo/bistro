@@ -1,10 +1,32 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../Proveiders/AuthProviders';
 import { Navigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+
 
 const Dasboard = () => {
     const { singOutUser, user } = useContext(AuthContext);
-    console.log(user)
+
+    const handleSingOutUser = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You will Have to login again for order foods",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Yes, Sign Out!',
+                'Log OUT done',
+                'success'
+              )
+              singOutUser();
+            }
+          })
+    }
 
     return (
         <>
@@ -26,7 +48,7 @@ const Dasboard = () => {
                         </div>
 
                         <button
-                            onClick={() => singOutUser()}
+                            onClick={handleSingOutUser}
                             className='btn btn-primary'>Log out</button>
                     </ul>
 
