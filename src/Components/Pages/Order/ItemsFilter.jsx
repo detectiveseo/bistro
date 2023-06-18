@@ -3,7 +3,7 @@ import OrderCard from '../../Shared/OrderCard/OrderCard';
 import useMenu from '../../../assets/Hooks/useMenu';
 import { Helmet } from 'react-helmet';
 
-const ItemsFilter = ({ categoryName }) => {
+const ItemsFilter = ({ categoryName, handleAddToCart }) => {
     const menuItems = useMenu();
     const categoryFilter = menuItems.filter(items => items.category === `${categoryName}`)
     return (
@@ -15,6 +15,7 @@ const ItemsFilter = ({ categoryName }) => {
                 <OrderCard
                     key={item._id}
                     item={item}
+                    handleAddToCart={handleAddToCart}
                 ></OrderCard>)}
         </div>
     );

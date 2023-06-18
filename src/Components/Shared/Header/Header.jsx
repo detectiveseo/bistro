@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import logo from '/logo.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../Proveiders/AuthProviders';
-
+import { FaShoppingCart } from 'react-icons/fa'
 const Header = () => {
-    const {user, loading} = useContext(AuthContext);
-    console.log( "user", user)
+    const { user, loading } = useContext(AuthContext);
+    console.log("user", user)
     return (
         <div className="navbar bg-black bg-opacity-10 text-white h-24 lg:fixed z-50">
             <div className="navbar-start">
@@ -21,18 +21,22 @@ const Header = () => {
                     </ul>
                 </div>
                 <Link to="/" className='p-5'>
-                   <img src={logo} alt="" />
+                    <img src={logo} alt="" />
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1  text-2xl font-thin uppercase">
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/menu">Menu</Link></li>
-                        <li><Link to="/order/salad">Shop</Link></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/menu">Menu</Link></li>
+                    <li><Link to="/order/salad">Order</Link></li>
+                    <li><Link to="/order/salad" className='btn bg-transparent text-white text-3xl'>
+                        <FaShoppingCart />
+                        <div className="badge badge-primary badge-lg absolute -right-3 -top-3">0</div>
+                    </Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
-                {!loading? <Link to={user? "dashboard" : "login"} className="text-2xl font-thin uppercase">{user? user.displayName : "Login"}</Link> : "loading"}
+                {!loading ? <Link to={user ? "dashboard" : "login"} className="text-2xl font-thin uppercase">{user ? user.displayName : "Login"}</Link> : "loading"}
             </div>
         </div>
     );
