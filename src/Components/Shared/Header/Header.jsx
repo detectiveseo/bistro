@@ -3,9 +3,11 @@ import logo from '/logo.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../Proveiders/AuthProviders';
 import { FaShoppingCart } from 'react-icons/fa'
+import useAddToCart from '../../../assets/Hooks/useAddToCart';
 const Header = () => {
     const { user, loading } = useContext(AuthContext);
-    console.log("user", user)
+    const { carts } = useAddToCart();
+    console.log(carts);
     return (
         <div className="navbar bg-black bg-opacity-10 text-white h-24 lg:fixed z-50">
             <div className="navbar-start">
@@ -31,7 +33,7 @@ const Header = () => {
                     <li><Link to="/order/salad">Order</Link></li>
                     <li><Link to="/order/salad" className='btn bg-transparent text-white text-3xl'>
                         <FaShoppingCart />
-                        <div className="badge badge-primary badge-lg absolute -right-3 -top-3">0</div>
+                        <div className="badge badge-primary badge-lg absolute -right-3 -top-3">+{carts?.length || 0}</div>
                     </Link></li>
                 </ul>
             </div>
