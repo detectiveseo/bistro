@@ -6,6 +6,7 @@ import Shop from './Components/Pages/Shop/Shop';
 import Order from './Components/Pages/Order/Order';
 import CreateAndLogin from './Components/Pages/Account/CreateAndLogin';
 import Dasboard from './Components/Pages/Dashboard/Dasboard';
+import Cart from './Components/Pages/Dashboard/Tabs/Cart';
 
 const Router = createBrowserRouter([{
     path: "/",
@@ -33,8 +34,15 @@ const Router = createBrowserRouter([{
                 },
                 {
                     path: "dashboard",
-                    element: <Dasboard></Dasboard>
-                }
+                    element: <Dasboard></Dasboard>,
+                    children: [
+                        {
+                            path: '/dashboard/cart',
+                            element: <Cart/>
+                        }
+                    ]
+                },
+                
             ]
     )
 }])

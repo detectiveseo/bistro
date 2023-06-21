@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../Proveiders/AuthProviders';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate, Outlet } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 
@@ -34,7 +34,7 @@ const Dasboard = () => {
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-center justify-center">
-                    {/* Page content here */}
+                    <Outlet />
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
                 </div>
@@ -43,8 +43,7 @@ const Dasboard = () => {
                     <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content flex flex-col justify-between">
                         {/* Sidebar content here */}
                         <div>
-                            <li><a>Sidebar Item 1</a></li>
-                            <li><a>Sidebar Item 2</a></li>
+                            <li><Link to="cart">Cart</Link></li>
                         </div>
 
                         <button

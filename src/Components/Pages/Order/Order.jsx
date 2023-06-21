@@ -32,8 +32,11 @@ const Order = () => {
                     timer: 1500
                })
                const data = {
-                    "product-id": item._id,
-                    email: user.email
+                    email: user.email,
+                    price: item.price,
+                    title: item.name,
+                    category: item.category,
+                    image: item.image,
                }
                fetch("http://localhost:5000/add-to-cart", {
                     method: "POST",

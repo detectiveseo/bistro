@@ -31,10 +31,12 @@ const Header = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/menu">Menu</Link></li>
                     <li><Link to="/order/salad">Order</Link></li>
-                    <li><Link to="/order/salad" className='btn bg-transparent text-white text-3xl'>
+                    <li><Link to="/order/salad"></Link></li>
+                    <li className='btn bg-transparent text-white text-3xl'><Link to="/dashboard/cart">
                         <FaShoppingCart />
                         <div className="badge badge-primary badge-lg absolute -right-3 -top-3">+{carts?.length || 0}</div>
                     </Link></li>
+
                 </ul>
             </div>
             <div className="navbar-end">
