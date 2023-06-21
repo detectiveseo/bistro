@@ -1,9 +1,26 @@
+import Swal from 'sweetalert2';
 import useAddToCart from '../../../../assets/Hooks/useAddToCart';
-import { ImCross } from 'react-icons/im';
+import CartDeteail from './CartDeteail';
+import { useContext } from 'react';
+import { AuthContext } from '../../../Proveiders/AuthProviders';
 
 const Cart = () => {
-    const { carts } = useAddToCart();
-    const totlaPrice = Math.round(carts.reduce((totalSub, item) => totalSub + item.price, 0))
+    const { carts, refetch, setLimit, setPage, limit, page } = useAddToCart();
+    const totlaPrice = Math.round(carts.reduce((totalSub, item) => totalSub + item.price, 0));
+
+
+    const {user} = useContext(AuthContext);
+    const totalpage = () => {
+        let pages = 0
+        fetch(`http://localhost:5000/total-added-food/?email=${user?.email}`)
+        .then((res) => {res.json()})
+        .then((data) => pages = (data.length))
+
+        return pages;
+    }
+
+    const pages = totalpage();
+    const pagesNumbar = [...Array(pages / limit).keys()]
     return (
         <div>
             <div className="overflow-x-auto">
@@ -21,37 +38,20 @@ const Cart = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
                         {
-                            carts.map(singleProduct => {
-                                const { category, image, price, title, _id, email } = singleProduct;
-                                return (
-                                    <tr key={singleProduct._id}>
-                                        <td>
-                                            <div className="flex items-center space-x-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-squircle w-12 h-12">
-                                                        <img src={image} />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className="font-bold">{title}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span className="badge badge-ghost badge-sm">{category}</span>
-                                        </td>
-                                        <td>{price}</td>
-                                        <th>
-                                            <button className="btn btn-ghost btn-xs"><ImCross /></button>
-                                        </th>
-                                    </tr>
-                                )
-                            })
+                            carts.map(singleProduct => <CartDeteail key={singleProduct._id} singleProduct={singleProduct} />)
+
                         }
+
                     </tbody>
                 </table>
+                <div className='text-center'>
+                    <div className="join">
+                        {pagesNumbar.map((x, i) =>
+                            <button key={i} className="join-item btn">{i+1}</button>)
+                            }
+                    </div>
+                </div>
             </div>
         </div>
     );
