@@ -49,7 +49,6 @@ const CreateAndLogin = () => {
         loginInWithEmailAndPassWord(data).then(() => {
             navigate('/dashboard')
         });
-        console.log(data)
     }
 
     //singIn with email

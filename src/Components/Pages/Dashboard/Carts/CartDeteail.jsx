@@ -5,7 +5,7 @@ import useAddToCart from '../../../../assets/Hooks/useAddToCart';
 
 const CartDeteail = ({ singleProduct }) => {
     const { category, image, price, title, _id, email } = singleProduct;
-    const { refetch } = useAddToCart();
+    const { refetch, isLoading } = useAddToCart();
     const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -43,29 +43,37 @@ const CartDeteail = ({ singleProduct }) => {
         })
     }
     return (
-        <tr>
-            <td>
-                <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                            <img src={image} />
+        <>
+        {
+            !isLoading?
+            <tr>
+                <td>
+                    <div className="flex items-center space-x-3">
+                        <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                                <img src={image} />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="font-bold">{title}</div>
                         </div>
                     </div>
-                    <div>
-                        <div className="font-bold">{title}</div>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <span className="badge badge-ghost badge-sm">{category}</span>
-            </td>
-            <td>{price}</td>
-            <th>
-                <button
-                    onClick={() => handleDelete(_id)}
-                    className="btn btn-ghost btn-xs bg-red-600 text-white"><ImCross /></button>
-            </th>
-        </tr>
+                </td>
+                <td>
+                    <span className="badge badge-ghost badge-sm">{category}</span>
+                </td>
+                <td>{price}</td>
+                <th>
+                    <button
+                        onClick={() => handleDelete(_id)}
+                        className="btn btn-ghost btn-xs bg-red-600 text-white"><ImCross /></button>
+                </th>
+            </tr>:
+            <div className='w-full h-screen flex justify-center items-center text-8xl'>
+                <h3>Loading</h3>
+            </div>
+        }
+        </>
     )
 }
 
